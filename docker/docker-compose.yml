@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    env_file:
+      - ./mysql/mysql.env
+    volumes:
+#      - ./mysql/backup:/var/www/backup
+      - /etc/hosts:/etc/hosts
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/db:/var/lib/mysql
+      - ./logs:/var/log
