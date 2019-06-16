@@ -1,0 +1,582 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>TD, TH {
+        padding: 3px;
+        border: 1px solid #000;
+    }
+
+    TH {
+        text-align: left;
+        border: 1px solid #000;
+    }</style>
+</head>
+<body><h1 id="d1_doc_gen_contents">Contents</h1>
+
+<ul>
+    <li><a href="#booking"><b>booking</b></a></li>
+    <li><a href="#company"><b>company</b></a></li>
+    <li><a href="#feature"><b>feature</b></a></li>
+    <li><a href="#feature_hall"><b>feature_hall</b></a></li>
+    <li><a href="#film"><b>film</b></a></li>
+    <li><a href="#hall"><b>hall</b></a></li>
+    <li><a href="#seans"><b>seans</b></a></li>
+</ul>
+<h1>Tables</h1>
+
+<h2 id="booking"> Table: <code>booking</code></h2>
+
+<h3>Description:</h3>
+
+<p></p>
+
+<h3>Columns:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Column</th>
+        <th align="left">Data type</th>
+        <th align="left">Attribute</th>
+        <th align="left">Defualt</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><code>id</code></td>
+        <td>INT</td>
+        <td>PRIMARY, AUTO INCREMENTS, NOT NULL, UNIQUE</td>
+        <td></td>
+        <td>4 бит в качестве не естественно ключа будет достаточно, unsigned исключит использование отрицательных
+            значений и добавит в интервал положительных значение
+        </td>
+    </tr>
+    <tr>
+        <td><code>id_seans</code></td>
+        <td>INT</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>insert_dt</code></td>
+        <td>DATETIME</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>Факт оплаты</td>
+    </tr>
+    <tr>
+        <td><code>payed_dt</code></td>
+        <td>DATETIME</td>
+        <td></td>
+        <td><code>NULL</code></td>
+        <td>Дата фактической оплаты билета на сеанс кино, NULL - не оплаченный билет</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Indexes:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Name</th>
+        <th align="left">Columns</th>
+        <th align="left">Data type</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>PRIMARY</td>
+        <td><code>id</code></td>
+        <td>PRIMARY</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>id_UNIQUE</td>
+        <td><code>id</code></td>
+        <td>UNIQUE</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<a href="#d1_doc_gen_contents">To contents</a>
+
+<h2 id="company"> Table: <code>company</code></h2>
+
+<h3>Description:</h3>
+
+<p></p>
+
+<h3>Columns:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Column</th>
+        <th align="left">Data type</th>
+        <th align="left">Attribute</th>
+        <th align="left">Defualt</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><code>id</code></td>
+        <td>INT</td>
+        <td>PRIMARY, AUTO INCREMENTS, NOT NULL, UNIQUE</td>
+        <td></td>
+        <td>4 бит в качестве не естественно ключа будет достаточно, unsigned исключит использование отрицательных
+            значений и добавит в интервал положительных значение
+        </td>
+    </tr>
+    <tr>
+        <td><code>name</code></td>
+        <td>VARCHAR(100)</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>Для названия компании вполне достаточно 100 символов в локальной кодировке, что сэкономят место и не будут
+            избыточными
+        </td>
+    </tr>
+    <tr>
+        <td><code>active</code></td>
+        <td>TINYINT</td>
+        <td>NOT NULL</td>
+        <td><code>'0'</code></td>
+        <td>Флаг активности, должен позволять периодически деактивировать компанию в афише и все его события. Одного
+            символа 0 или 1 хватит для фильтрации
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Indexes:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Name</th>
+        <th align="left">Columns</th>
+        <th align="left">Data type</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>PRIMARY</td>
+        <td><code>id</code></td>
+        <td>PRIMARY</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>id_UNIQUE</td>
+        <td><code>id</code></td>
+        <td>UNIQUE</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<a href="#d1_doc_gen_contents">To contents</a>
+
+<h2 id="feature"> Table: <code>feature</code></h2>
+
+<h3>Description:</h3>
+
+<p></p>
+
+<h3>Columns:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Column</th>
+        <th align="left">Data type</th>
+        <th align="left">Attribute</th>
+        <th align="left">Defualt</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><code>id</code></td>
+        <td>INT</td>
+        <td>PRIMARY, AUTO INCREMENTS, NOT NULL, UNIQUE</td>
+        <td></td>
+        <td>4 бит в качестве не естественно ключа будет достаточно, unsigned исключит использование отрицательных
+            значений и добавит в интервал положительных значение
+        </td>
+    </tr>
+    <tr>
+        <td><code>name</code></td>
+        <td>VARCHAR(100)</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>100 символов в локальной кодировке сэкономят место и не будут избыточными</td>
+    </tr>
+    <tr>
+        <td><code>type</code></td>
+        <td>ENUM</td>
+        <td>NOT NULL</td>
+        <td><code>'string'</code></td>
+        <td>Тип данных который будет сохранен в значении характеристики зала, набор этих данных жестко ограничены, т.к.
+            от них будет зависеть как будет выводиться значения характеристик
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Indexes:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Name</th>
+        <th align="left">Columns</th>
+        <th align="left">Data type</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>PRIMARY</td>
+        <td><code>id</code></td>
+        <td>PRIMARY</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>id_UNIQUE</td>
+        <td><code>id</code></td>
+        <td>UNIQUE</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<a href="#d1_doc_gen_contents">To contents</a>
+
+<h2 id="feature_hall"> Table: <code>feature_hall</code></h2>
+
+<h3>Description:</h3>
+
+<p></p>
+
+<h3>Columns:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Column</th>
+        <th align="left">Data type</th>
+        <th align="left">Attribute</th>
+        <th align="left">Defualt</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><code>id_feature</code></td>
+        <td>INT</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>Внешний ключ в рамках составного индекса характеристики зала</td>
+    </tr>
+    <tr>
+        <td><code>id_hall</code></td>
+        <td>INT</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>Внешний ключ в рамках составного индекса характеристики зала</td>
+    </tr>
+    <tr>
+        <td><code>value</code></td>
+        <td>VARCHAR(100)</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>100 символов в локальной кодировке сэкономят место и не будут избыточными, здесь будут хранится значения
+            характеристик, сами характеристики могут добавляться, значения зависят от конкретного зала
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Indexes:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Name</th>
+        <th align="left">Columns</th>
+        <th align="left">Data type</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>id_hall</td>
+        <td><code>id_hall</code></td>
+        <td>INDEX</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>id_feature</td>
+        <td><code>id_feature</code></td>
+        <td>INDEX</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<a href="#d1_doc_gen_contents">To contents</a>
+
+<h2 id="film"> Table: <code>film</code></h2>
+
+<h3>Description:</h3>
+
+<p></p>
+
+<h3>Columns:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Column</th>
+        <th align="left">Data type</th>
+        <th align="left">Attribute</th>
+        <th align="left">Defualt</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><code>id</code></td>
+        <td>INT</td>
+        <td>PRIMARY, AUTO INCREMENTS, NOT NULL, UNIQUE</td>
+        <td></td>
+        <td>Естественных ключей для фильм нет в рамках наших атрибутов, простого int в 4 байта будет достаточно на
+            ближайшие несколько десятков лет. В значения 4 байта с включеным unsigned входит числа от 0 до 4294967295
+        </td>
+    </tr>
+    <tr>
+        <td><code>name</code></td>
+        <td>VARCHAR(255)</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>хранение названия фильма достаточно для локальной кодировки, отсутствие utf позволит сэкономить занимаемое
+            место
+        </td>
+    </tr>
+    <tr>
+        <td><code>year</code></td>
+        <td>YEAR(4)</td>
+        <td></td>
+        <td><code>'0000'</code></td>
+        <td>Нужно хранить только год, YEAR займет только 1 байт, этого достаточно для вывода информации, сортировки и
+            фильтрации.\nКак альтернативу можно рассмотреть SMALLINT (2 байта), он дает диапазон, достаточный в
+            большинстве ситуаций для хранения года, но. в нашем случае возможно избыточен, т.к. До 2155 года(макс число
+            для YEAR) еще нужно дожить
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Indexes:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Name</th>
+        <th align="left">Columns</th>
+        <th align="left">Data type</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>PRIMARY</td>
+        <td><code>id</code></td>
+        <td>PRIMARY</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>id_UNIQUE</td>
+        <td><code>id</code></td>
+        <td>UNIQUE</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<a href="#d1_doc_gen_contents">To contents</a>
+
+<h2 id="hall"> Table: <code>hall</code></h2>
+
+<h3>Description:</h3>
+
+<p></p>
+
+<h3>Columns:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Column</th>
+        <th align="left">Data type</th>
+        <th align="left">Attribute</th>
+        <th align="left">Defualt</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><code>id</code></td>
+        <td>INT</td>
+        <td>PRIMARY, AUTO INCREMENTS, NOT NULL</td>
+        <td></td>
+        <td>4 бит в качестве не естественно ключа будет достаточно, unsigned исключит использование отрицательных
+            значений и добавит в интервал положительных значение
+        </td>
+    </tr>
+    <tr>
+        <td><code>id_company</code></td>
+        <td>INT</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>name</code></td>
+        <td>VARCHAR(100)</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>Для названия зала кинотеатра вполне достаточно 100 символов в локальной кодировке, что сэкономят место и не
+            будут избыточными
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Indexes:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Name</th>
+        <th align="left">Columns</th>
+        <th align="left">Data type</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>PRIMARY</td>
+        <td><code>id</code></td>
+        <td>PRIMARY</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<a href="#d1_doc_gen_contents">To contents</a>
+
+<h2 id="seans"> Table: <code>seans</code></h2>
+
+<h3>Description:</h3>
+
+<p></p>
+
+<h3>Columns:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Column</th>
+        <th align="left">Data type</th>
+        <th align="left">Attribute</th>
+        <th align="left">Defualt</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><code>id</code></td>
+        <td>INT</td>
+        <td>PRIMARY, AUTO INCREMENTS, NOT NULL, UNIQUE</td>
+        <td></td>
+        <td>4 бит в качестве не естественно ключа будет достаточно идентификации сеансов, unsigned исключит
+            использование отрицательных значений и добавит в интервал положительных значение
+        </td>
+    </tr>
+    <tr>
+        <td><code>id_film</code></td>
+        <td>INT</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>Внешний ключ в рамках составного индекса</td>
+    </tr>
+    <tr>
+        <td><code>id_hall</code></td>
+        <td>INT</td>
+        <td>NOT NULL</td>
+        <td></td>
+        <td>Внешний ключ в рамках составного индекса</td>
+    </tr>
+    <tr>
+        <td><code>price</code></td>
+        <td>DECIMAL</td>
+        <td>NOT NULL</td>
+        <td><code>'0.00'</code></td>
+        <td>Цена за сеанс, DECIMAL сохранит корректный формат данных специально для цен</td>
+    </tr>
+    <tr>
+        <td><code>finished</code></td>
+        <td>TINYINT</td>
+        <td>NOT NULL</td>
+        <td><code>'0'</code></td>
+        <td>Факт окончания сеанса, сеансы с этим флагом не используются в паблике</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Indexes:</h3>
+
+<table>
+    <thead>
+    <tr class="header">
+        <th align="left">Name</th>
+        <th align="left">Columns</th>
+        <th align="left">Data type</th>
+        <th align="left">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>PRIMARY</td>
+        <td><code>id</code></td>
+        <td>PRIMARY</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>id_UNIQUE</td>
+        <td><code>id</code></td>
+        <td>UNIQUE</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<a href="#d1_doc_gen_contents">To contents</a>
+
+</body>
+</html>
