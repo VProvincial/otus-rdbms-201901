@@ -39,4 +39,4 @@
 
 #### PS:
 Обновленная модель данных с клиентами и статусами брони - /lesson_3/model_with_client_v2006.pdf
-Новый бэкап БД - /docker/mysql/backup/backup_v2006.sql 
+Новый бэкап БД - /docker/mysql/backup/backup_06_20.sql 
