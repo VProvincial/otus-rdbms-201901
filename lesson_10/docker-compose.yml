@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: lesson_10_mysql
+    ports:
+      - '3306:3306'
+    env_file:
+      - ../docker/mysql/mysql.env
+    volumes:
+      - /etc/hosts:/etc/hosts
+      - ../docker/mysql/db_lesson_10:/var/lib/mysql
+      - ../docker/logs:/var/log
+      - ./entrypoint_sql:/docker-entrypoint-initdb.d

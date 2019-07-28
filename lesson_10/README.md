@@ -48,13 +48,20 @@
            left join productlistpricehistory PLP on
       (P.ProductID = PLP.ProductID and PLP.StartDate <= '2003-01-30 00:00:00' and PLP.EndDate >= '2003-01-30 00:00:00');
 
+#### Документация к БД AdventureWorks
 
-#### Документация к БД AdventureWorks 
+Ссылка на документацию и схему данных к БД
+
         https://docs.microsoft.com/ru-ru/previous-versions/sql/sql-server-2008/ms124670%28v%3dsql.100%29
         https://moidulhassan.files.wordpress.com/2014/07/adventureworks2008_schema.gif
-        
-#### Как запускать
 
+БД можно скачать отсюда 
+
+        https://github.com/tapsey/AdventureWorksMYSQL - бэкап
+        https://github.com/microsoft/sql-server-samples/releases/tag/adventureworks - скрипт для установки AdventureWorks-oltp-install-script.zip 20мб
+         
+#### Как запускать
+В папку lesson_10/entrypoint_sql/ положить sql скрипт с бэкапом
 
          docker-compose up
          docker exec -it lesson_10_mysql bash

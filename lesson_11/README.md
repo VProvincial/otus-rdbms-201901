@@ -72,12 +72,8 @@
         https://github.com/tapsey/AdventureWorksMYSQL
         https://github.com/microsoft/sql-server-samples/releases/tag/adventureworks
 #### Как запускать
+В папку lesson_11/entrypoint_sql/ положить sql скрипт с бэкапом
 
          docker-compose up
-         docker ps
-         
-         CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                               NAMES
-         603188061b89        mysql:5.7           "docker-entrypoint.s…"   2 minutes ago       Up 2 minutes        0.0.0.0:3306->3306/tcp, 33060/tcp   lesson_11_mysql
-         
          docker exec -it lesson_11_mysql bash
          mysql -p          //qwer
