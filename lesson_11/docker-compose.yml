@@ -6,9 +6,9 @@ services:
     ports:
       - '3306:3306'
     env_file:
-      - ../docker/mysql/mysql.env
+      - ../docker/mysql/aw_mysql.env
     volumes:
       - /etc/hosts:/etc/hosts
       - ../docker/mysql/db_lesson_11:/var/lib/mysql
       - ../docker/logs:/var/log
-      - ./entrypoint_sql:/docker-entrypoint-initdb.d
+      - ../docker/mysql/backup/AdventureWorks/AdventureWorks.sql:/docker-entrypoint-initdb.d/AdventureWorks.sql

@@ -72,7 +72,6 @@
         https://github.com/tapsey/AdventureWorksMYSQL
         https://github.com/microsoft/sql-server-samples/releases/tag/adventureworks
 #### Как запускать
-В папку lesson_11/entrypoint_sql/ положить sql скрипт с бэкапом
 
          docker-compose up
          docker exec -it lesson_11_mysql bash

@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:8
+    container_name: aw_mysql
+    ports:
+      - '3306:3306'
+    env_file:
+      - ../../aw_mysql.env
+    volumes:
+      - /etc/hosts:/etc/hosts
+      - ../../db_aw:/var/lib/mysql
+      - ../.../../logs:/var/log
+      - ./AdventureWorks.sql:/docker-entrypoint-initdb.d/AdventureWorks.sql
