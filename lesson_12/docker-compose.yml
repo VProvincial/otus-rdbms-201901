@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:8
+    container_name: lesson_12_mysql
+    ports:
+      - '3306:3306'
+    env_file:
+      - ../docker/mysql/aw_mysql.env
+    volumes:
+      - /etc/hosts:/etc/hosts
+      - ../docker/mysql/db_lesson_12:/var/lib/mysql
+      - ../docker/logs:/var/log
+      - ../docker/mysql/backup/AdventureWorks/AdventureWorks.sql:/docker-entrypoint-initdb.d/AdventureWorks.sql
