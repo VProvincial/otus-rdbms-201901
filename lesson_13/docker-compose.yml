@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:8
+    container_name: lesson_13_mysql
+    ports:
+      - '3306:3306'
+    env_file:
+      - ../docker/mysql/dvd_rental_mysql.env
+    volumes:
+      - /etc/hosts:/etc/hosts
+      - ../docker/mysql/db_lesson_13:/var/lib/mysql
+      - ../docker/logs:/var/log
+      - ../docker/mysql/backup/sakila_dvdrental/entrypoint_sql:/docker-entrypoint-initdb.d
