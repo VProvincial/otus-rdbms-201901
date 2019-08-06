@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:8
+    container_name: sakila_dvd_rental_mysql
+    ports:
+      - '3306:3306'
+    env_file:
+      - ../../dvd_rental_mysql.env
+    volumes:
+      - /etc/hosts:/etc/hosts
+      - ../../db_sakila_dvd_rental:/var/lib/mysql
+      - ../.../../logs:/var/log
+      - ./entrypoint_sql:/docker-entrypoint-initdb.d/

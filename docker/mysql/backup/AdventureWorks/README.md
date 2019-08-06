@@ -14,11 +14,8 @@
         
 #### Как запускать
 
-Добавим символическую ссылку на бэкап, либо загрузим файл AdventureWorks.sql в папку lesson_12/entrypoint_sql/
-
-         ln -s ../../docker/mysql/backup/AdventureWorks/AdventureWorks.sql 
-Запустим докер
-
+         cd /docker/mysql/backup/AdventureWorks/
+         
          docker-compose up
          docker exec -it aw_mysql bash
          mysql -p          //qwer
