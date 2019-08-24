@@ -1,0 +1,20 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: lesson_16_mysql
+    ports:
+      - '3306:3306'
+    env_file:
+      - ../docker/mysql/traktors_mysql.env
+    #    environment:
+    #      - MYSQL_ROOT_PASSWORD=qwer
+    #      - MYSQL_DATABASE=traktors
+    #      - MYSQL_USER=db-user
+    #      - MYSQL_PASSWORD=qwer
+    volumes:
+      - /etc/hosts:/etc/hosts
+      - ../docker/mysql/db_lesson_16:/var/lib/mysql
+      - ../docker/logs:/var/log
+      - ../docker/mysql/backup/traktors/traktors.sql:/docker-entrypoint-initdb.d/01_traktors.sql
+      - ./entrypoint_sql:/docker-entrypoint-initdb.d
