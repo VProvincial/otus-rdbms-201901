@@ -48,9 +48,9 @@
                description,
                release_year
         from film
-      having FirstTitle = 'B'
-      order by title
-      limit 100;
+        having FirstTitle = 'B'
+        order by title
+        limit 100;
 
 2. Кинчики для Василия
 
@@ -94,19 +94,20 @@
 
         with cte_staff_rental as (
           select r.staff_id
-               , s.first_name
                , r.rental_date
                , r.rental_id
                , r.customer_id
+               , row_number() over(partition by r.staff_id order by r.rental_date desc, r.rental_id desc) as rn
           from rental r
-                 left join staff s on r.staff_id = s.staff_id
-            order by r.rental_date desc
         )
-        select distinct
-            any_value(sr.first_name)                                                                as first_name
-          , first_value(sr.rental_date) over(partition by sr.staff_id order by sr.rental_date desc) as max_rental_date
-          , first_value(sr.customer_id) over(partition by sr.staff_id order by sr.rental_date desc,sr.rental_id desc) as custumer_id
-        from cte_staff_rental sr;    
+        select sr.rental_id
+             , sr.rental_date
+             , concat(s.first_name, s.last_name) as staff
+             , concat(c.first_name, c.last_name) as customer
+        from cte_staff_rental as sr
+               left join staff s on sr.staff_id = s.staff_id
+               left join customer c on sr.customer_id = c.customer_id
+        where rn = 1   
     
     4.1 Без аналитических функций
 
@@ -117,32 +118,34 @@
                left join film_actor fa on f.film_id = fa.film_id
                left join actor a on fa.actor_id = a.actor_id
                join (select i.film_id, max(r.rental_date) as rental_date
-                     from rental r,
-                          inventory i
-                     where r.inventory_id = i.inventory_id
-                     group by i.film_id) r on r.film_id = f.film_id;
+         from rental r,
+              inventory i
+         where r.inventory_id = i.inventory_id
+         group by i.film_id) r on r.film_id = f.film_id;
           
     4.2 С аналитическими функций
 
-        with cte_actor_rental as (
-          select f.film_id
-               , fa.actor_id
-               , r.inventory_id
+        with cte_rental as (
+          select i.film_id
                , r.rental_date
                , r.rental_id
-               , f.title
+               , r.inventory_id
+               , row_number() over(partition by i.film_id, r.rental_date order by r.rental_date desc) as rn
           from rental r
                  left join inventory i on i.inventory_id = r.inventory_id
-                 left join film f on i.film_id = f.film_id
-                 left join film_actor fa on f.film_id = fa.film_id
-          order by r.rental_date desc
+          order by i.film_id asc, r.rental_date desc
         )
         select distinct concat('[', a.actor_id, ']', a.last_name, ' ', left(a.first_name, 1), '.') as actor
-                      , concat('[', ar.film_id, '] ', ar.title)
-                      , first_value(ar.rental_date) over(partition by ar.actor_id
-                                    order by ar.rental_date desc)                                  as max_rental_date
-        from cte_actor_rental ar
-               left join actor a on a.actor_id = ar.actor_id;
+                      , concat('[', f.film_id, '] ', f.title)
+                      #, r.rental_date
+                      #, r.rental_id
+                      #, r.inventory_id
+        from cte_rental r
+               left join film f on f.film_id = r.film_id
+               left join film_actor fa on fa.film_id = r.film_id
+               left join actor a on a.actor_id = fa.actor_id
+        where rn = 1
+        order by r.rental_date desc;
                
 #### Как запускать
 
